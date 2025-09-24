@@ -162,8 +162,10 @@ load_csv_into_table(r"dataSet\cleandata\shipping_address.csv",
 
 load_csv_into_table(r"dataSet\cleandata\order.csv",
     '''INSERT INTO yanki."order" (Order_ID, Customer_ID, Product_ID, Quantity, Total_Price, Order_Date)
-       VALUES (%s, %s, %s, %s, %s, %s)
+       VALUES (%s, %s, %s, %s, %s, NULLIF(%s, "")
        ON CONFLICT (Order_ID) DO NOTHING''')
+
+
 
 load_csv_into_table(r"dataSet\cleandata\payment_method.csv",
     '''INSERT INTO yanki.payment_method (Order_ID, Payment_Method, Transaction_Status)
